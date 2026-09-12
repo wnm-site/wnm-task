@@ -7,15 +7,18 @@ const errorHandler = require('./middleware/errorHandler');
 const app = express();
 
 // ── CORS ─────────────────────────────────────────────────────────
-// Allow local development + the deployed Netlify frontend(s).
+// Allow local development + the deployed frontends (Netlify & Vercel).
 //   - request origin is reflected only when it's in the allowlist
 //   - FRONTEND_URL    : single extra origin (kept for backwards compat)
 //   - ALLOWED_ORIGINS : comma-separated list of extra origins
-//   - *.netlify.app   : any Netlify deploy/preview URL is allowed
+//   - *.netlify.app / *.vercel.app : platform deploy & preview URLs
+//     (the server itself runs on Vercel, so *.vercel.app also covers
+//      the Vercel-hosted frontend's deploy/preview URLs)
 const defaultOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
   'https://task2rewards.netlify.app',
+  'https://task2rewards.vercel.app',
 ];
 
 const envOrigins = [
@@ -32,7 +35,7 @@ function isAllowedOrigin(origin) {
   if (!origin) return true;
   return (
     allowedOrigins.includes(origin) ||
-    /^https:\/\/[a-zA-Z0-9-]+\.netlify\.app$/.test(origin)
+    /^https:\/\/[a-zA-Z0-9-]+\.(netlify|vercel)\.app$/.test(origin)
   );
 }
 
