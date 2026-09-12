@@ -1,0 +1,10 @@
+# Vercel
+.vercel
+
+# Dependencies
+node_modules
+
+# Environment variables (never commit secrets)
+.env
+.env.*
+!.env.example

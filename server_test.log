@@ -1,0 +1,4 @@
+◇ injected env (6) from .env // tip: ⌘ enable debugging { debug: true }
+✅ MongoDB Connected: undefined
+🚀 Server running on port 5000
+✅ MongoDB Connected: ac-l2ffvdt-shard-00-01.iyvsph1.mongodb.net
